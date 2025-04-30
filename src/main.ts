@@ -29,7 +29,7 @@ async function bootstrap() {
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaExceptionFilter(httpAdapter));
   app.useGlobalInterceptors(new ResponseInterceptor());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
   const swaggerTheme = new SwaggerTheme();
   const config = new DocumentBuilder()

@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -24,16 +23,22 @@ model User {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   deletedAt  DateTime?
-  userRoleId Int?
-  userRole   UserRole? @relation(fields: [userRoleId], references: [id])
+  userRoleId String?
+  userRole   UserRole? @relation(fields: [userRoleId], references: [publicId])
 }
 
 model UserRole {
   id        Int       @id @default(autoincrement())
   publicId  String    @unique @default(uuid())
-  name      String    @unique
+  name      Role      @unique @default(USER)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
   User      User[]
+}
+
+enum Role {
+  SUPERADMIN
+  MARKETING
+  USER
 }

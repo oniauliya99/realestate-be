@@ -39,7 +39,7 @@ async function bootstrap() {
     .addSecurityRequirements('bearer')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/realestate/spec', app, document, {
+  SwaggerModule.setup('api/v1/realestate/spec', app, document, {
     customCss: swaggerTheme.getBuffer(SwaggerThemeNameEnum.NORD_DARK),
   });
 

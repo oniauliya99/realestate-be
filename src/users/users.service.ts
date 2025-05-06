@@ -63,9 +63,7 @@ export class UsersService {
     const user = await this.prismaService.user.findFirst({
       where: { emailVerificationToken: token },
     });
-
     if (!user) throw new BadRequestException('Invalid or expired token');
-    console.log(user, 'user');
     await this.prismaService.user.update({
       where: { id: user.id },
       data: {

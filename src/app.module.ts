@@ -6,9 +6,8 @@ import { RoleModule } from './role/role.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { EmailModule } from './email/email.module';
-import { JwtModule } from '@nestjs/jwt';
 import { LocationModule } from './location/location.module';
-import { PassportModule } from '@nestjs/passport';
+import { BranchModule } from './branch/branch.module';
 
 @Module({
   imports: [
@@ -28,6 +27,7 @@ import { PassportModule } from '@nestjs/passport';
     RoleModule,
     EmailModule,
     LocationModule,
+    BranchModule,
   ],
   // controllers: [AppController],
   // providers: [AppService],

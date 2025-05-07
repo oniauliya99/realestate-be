@@ -46,4 +46,53 @@ export class LocationService {
       data: result.reduce((a, b) => [...a, { value: b.id, label: b.name }], []),
     };
   }
+
+  async getOneByVillageId(villageId: string) {
+    const village = await this.prismaService.village.findFirst({
+      where: { id: villageId },
+      include: {
+        province: true,
+        city: { select: { id: true, name: true } },
+        district: { select: { id: true, name: true } },
+      },
+    });
+
+    // if (!village) {
+    //   throw new Error('Village not found');
+    // }
+
+    // const { province, city, district, id, name } = village;
+
+    return {
+      province: {
+        value: village?.province.id ?? null,
+        label: village?.province.name ?? null,
+      },
+      city: {
+        value: village?.city?.id ?? null,
+        label: village?.city?.name ?? null,
+      },
+      district: {
+        value: village?.district?.id ?? null,
+        label: village?.district?.name ?? null,
+      },
+      village: {
+        value: village?.id ?? null,
+        label: village?.name ?? null,
+      },
+    };
+  }
+
+  async findOneCityByName(cityName: string) {
+    return this.prismaService.city.findFirst({
+      where: { name: { contains: cityName } },
+    });
+  }
+
+  async findOneCityDetailByName(cityName: string) {
+    return this.prismaService.city.findFirst({
+      where: { name: { contains: cityName } },
+      include: { province: true },
+    });
+  }
 }

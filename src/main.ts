@@ -15,7 +15,7 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: { port: 3001 },
   });
-  app.setGlobalPrefix('api/realestate');
+  app.setGlobalPrefix('api/v1/realestate');
   app.enableShutdownHooks();
   app.enableCors();
   app.useGlobalPipes(

@@ -11,7 +11,7 @@ export type Location = {
 export class CreateBranchDto {
   @IsNotEmpty({ message: 'Code harus diisi' })
   @IsString({ message: 'Code harus berupa string' })
-  @Length(2, 3, { message: 'Code harus 2-3 karakter' })
+  @Length(2, 4, { message: 'Code harus 2-3 karakter' })
   @ApiProperty()
   code: string;
 
@@ -26,14 +26,13 @@ export class CreateBranchDto {
     example: {
       village: {
         label: 'Desa Sukamaju',
-        value: 11999,
+        value: '11999',
       },
     },
   })
   @IsNotEmpty({
     message: 'Location harus berisi Village ID',
   })
-  @IsString({ message: 'Location harus berupa string' })
   @ApiProperty()
   location: Location;
 }

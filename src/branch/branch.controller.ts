@@ -27,7 +27,7 @@ export class BranchController {
 
   @Post()
   async create(@Body() dto: CreateBranchDto) {
-    const result = await this.branchService.create(dto);
+    return this.branchService.create(dto);
   }
 
   @Put(':publicId ')
@@ -35,6 +35,6 @@ export class BranchController {
     @Param('publicId') publicId: string,
     @Body() dto: UpdateBranchDto,
   ) {
-    // return this.branchService.update(publicId, dto);
+    return this.branchService.update(publicId, dto);
   }
 }

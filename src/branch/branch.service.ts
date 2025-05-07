@@ -7,14 +7,10 @@ import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { GetAllDto } from 'src/utils/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { LocationService } from 'src/location/location.service';
 
 @Injectable()
 export class BranchService {
-  constructor(
-    private readonly prismaService: PrismaService,
-    private readonly locationService: LocationService,
-  ) {}
+  constructor(private readonly prismaService: PrismaService) {}
   async create(createBranchDto: CreateBranchDto) {
     const { code, location: loc, name } = createBranchDto;
     const branchExists = await this.prismaService.branch.findFirst({

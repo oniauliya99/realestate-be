@@ -59,12 +59,60 @@ model User {
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
   deletedAt              DateTime?
-  userRoleId             String?
-  branchId               String?
-  brokerId               String?
-  broker                 Broker?   @relation(fields: [brokerId], references: [publicId])
-  branch                 Branch?   @relation(fields: [branchId], references: [publicId])
-  userRole               UserRole? @relation(fields: [userRoleId], references: [publicId])
+  userRoleId             Int?
+  branchId               Int?
+  brokerId               Int?
+  broker                 Broker?   @relation(fields: [brokerId], references: [id])
+  branch                 Branch?   @relation(fields: [branchId], references: [id])
+  userRole               UserRole? @relation(fields: [userRoleId], references: [id])
+}
+
+model Address {
+  id        Int       @id @default(autoincrement())
+  publicId  String    @unique @default(uuid())
+  name      String
+  address   String
+  location  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model AddressIdentity {
+  id        Int       @id @default(autoincrement())
+  publicId  String    @unique @default(uuid())
+  name      String
+  address   String
+  location  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model AddressOffice {
+  id        Int       @id @default(autoincrement())
+  publicId  String    @unique @default(uuid())
+  name      String
+  address   String
+  location  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model PersonalInformation {
+  id             Int          @id @default(autoincrement())
+  publicId       String       @unique @default(uuid())
+  identityType   IdentityType @default(KTP)
+  identityNumber String
+  birthDate      DateTime
+  gender         Gender
+  placeOfBirth   Json?
+  name           String
+  phone          String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
 }
 
 model UserRole {
@@ -105,4 +153,15 @@ enum Role {
   SUPERADMIN
   MARKETING
   USER
+}
+
+enum IdentityType {
+  KTP
+  SIM
+}
+
+enum Gender {
+  PRIA
+  WANITA
+  LAINNYA
 }

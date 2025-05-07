@@ -15,7 +15,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db-seed": "ts-node prisma/seed-v2.ts"
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -38,6 +39,7 @@
     "nodemailer": "^7.0.2",
     "passport-jwt": "^4.0.1",
     "pg": "^8.15.6",
+    "read-excel-file": "^5.8.8",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "swagger": "^0.7.5",
